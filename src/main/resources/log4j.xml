@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+  <appender name="error" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/error.log" />
+    <param name="Encoding" value="UTF-8" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c{2} - %m%n" />
+    </layout>
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="levelMin" value="ERROR" />
+      <param name="levelMax" value="FATAL" />
+    </filter>
+  </appender>
+
+  <appender name="debug" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/debug.log" />
+    <param name="Encoding" value="UTF-8" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c{2} - %m%n" />
+    </layout>
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="levelMin" value="DEBUG" />
+      <param name="levelMax" value="DEBUG" />
+    </filter>
+  </appender>
+  
+  <appender name="apilog" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/api.csv" />
+    <param name="Encoding" value="UTF-8" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n"/>
+    </layout>
+  </appender>
+  
+  <appender name="exception" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/exception.log" />
+    <param name="Encoding" value="UTF-8" />
+    <param name="Append" value="true"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n"/>
+    </layout>
+  </appender>
+  
+  <appender name="webapi" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/webapi.log" />
+    <param name="Encoding" value="UTF-8" />
+    <param name="Append" value="true"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n"/>
+    </layout>
+  </appender>
+  
+  <appender name="notify" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/notify.log" />
+    <param name="Encoding" value="UTF-8" />
+    <param name="Append" value="true"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n"/>
+    </layout>
+  </appender>
+  
+  <appender name="cron" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/cron.log" />
+    <param name="Encoding" value="UTF-8" />
+    <param name="Append" value="true"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n"/>
+    </layout>
+  </appender>
+
+  <appender name="FILE_SPRING" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/spring.log" />
+    <param name="Encoding" value="UTF-8" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c{2} - %m%n" />
+    </layout>
+  </appender> 
+
+  <appender name="FILE_HIBERNATE" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/home/daole/logs/hibernate.log" />
+    <param name="Encoding" value="UTF-8" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %c{2} - %m%n" />
+    </layout>
+    <filter class="org.apache.log4j.varia.StringMatchFilter">
+        <param name="StringToMatch" value="bind" />
+        <param name="AcceptOnMatch" value="true" />
+    </filter>
+    <filter class="org.apache.log4j.varia.StringMatchFilter">
+        <param name="StringToMatch" value="select" />
+        <param name="AcceptOnMatch" value="true" />
+    </filter>  
+    <filter class="org.apache.log4j.varia.DenyAllFilter"/>
+  </appender> 
+
+  <logger name="org.springframework" additivity="false">
+    <level value="DEBUG"/>
+    <appender-ref ref="FILE_SPRING"/>
+  </logger>
+
+  <logger name="org.hibernate.type">
+    <level value="TRACE"/> 
+    <appender-ref ref="FILE_HIBERNATE"/>
+  </logger>
+
+  <logger name="org.hibernate.SQL">
+    <level value="TRACE"/> 
+    <appender-ref ref="FILE_HIBERNATE"/>
+  </logger>
+
+  <category name="apilog">
+    <appender-ref ref="apilog" />
+  </category>
+  
+  <category name="exception">
+    <appender-ref ref="exception" />
+  </category>
+  
+  <category name="webapi">
+    <appender-ref ref="webapi" />
+  </category>
+  
+  <category name="notify">
+    <appender-ref ref="notify" />
+  </category>
+  
+  <category name="cron">
+    <appender-ref ref="cron" />
+  </category>
+
+  <category name="com.hoiio">
+    <level value="debug" />
+    <appender-ref ref="debug" />
+  </category>
+
+  <root>
+    <appender-ref ref="error" />
+  </root>
+
+</log4j:configuration>
