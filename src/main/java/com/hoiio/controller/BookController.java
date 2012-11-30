@@ -59,20 +59,7 @@ public class BookController {
      @RequestMapping(value="/get", method=RequestMethod.GET)
      @ResponseBody
      public String get() {
-         FileAppender fa = new FileAppender();
-         fa.setName("FileLogger");
-         fa.setFile("/home/daole/logs/mylog.log");
-         fa.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
-         fa.setThreshold(Level.DEBUG);
-         fa.setAppend(true);
-         fa.activateOptions();
-
-         //add appender to any Logger (here is root)
-         Logger.getRootLogger().addAppender(fa);
-
-         LoggerFactory.getLogger("FileLogger").debug("Test");
-
-         LoggerFactory.getLogger("com.hoiio").debug("Testing");
+         LoggerFactory.getLogger(BookController.class).debug("Testing");
          return get.get();
      }
 
