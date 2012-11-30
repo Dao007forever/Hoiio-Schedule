@@ -60,10 +60,9 @@
   <!-- For testing purposes -->
 
   <dependency>
-   <groupId>javax.servlet</groupId>
-   <artifactId>servlet-api</artifactId>
-   <version>2.5</version>
-   <scope>test</scope>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>6.0.35</version>
   </dependency>
 
   <dependency>
@@ -81,11 +80,6 @@
   </dependency>
   
   <dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.16</version>
-  </dependency>
-  <dependency>
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-log4j12</artifactId>
     <version>1.6.6</version>
@@ -99,7 +93,18 @@
     <groupId>cglib</groupId>
     <artifactId>cglib</artifactId>
     <version>2.2.2</version>
-</dependency>
+    </dependency>
+    <dependency> 
+            <groupId>ch.qos.logback</groupId> 
+            <artifactId>logback-classic</artifactId> 
+            <version>1.0.7</version> 
+          </dependency>
+          
+          <dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-core</artifactId>
+  <version>1.0.7</version>
+ </dependency>
                       
  </dependencies>
 
@@ -110,13 +115,38 @@
   
    <!-- With this you can start the server by doing mvn jetty:run -->
    <plugin>
-    <groupId>org.mortbay.jetty</groupId>
-    <artifactId>maven-jetty-plugin</artifactId>
-    <version>6.1.26</version>
-    <configuration>
-     <scanIntervalSeconds>3</scanIntervalSeconds>
-    </configuration>
-   </plugin>
+	   <groupId>org.mortbay.jetty</groupId>
+	   <artifactId>jetty-maven-plugin</artifactId>
+	   <configuration>
+			   <scanIntervalSeconds>3</scanIntervalSeconds>
+			   <webApp>
+			     <contextPath>/test</contextPath>
+			     </webApp>
+			    <systemproperties>
+		        
+			      <systemproperty>
+				     <name>log4j.configuration</name>
+				     <value>file:./src/main/resources/log4j.xml</value>
+			      </systemproperty>
+			      <systemProperty>
+			        <name>logback.configurationFile</name>
+			        <value>${project.build.outputDirectory}/jetty-logback.xml</value>
+			      </systemProperty>
+			    </systemproperties>
+	     </configuration>
+	     <dependencies>
+		    <dependency>
+		      <groupId>org.slf4j</groupId>
+		      <artifactId>slf4j-api</artifactId>
+		      <version>1.6.6</version>
+		    </dependency>
+		    <dependency>
+		      <groupId>ch.qos.logback</groupId>
+		      <artifactId>logback-classic</artifactId>
+		      <version>1.0.7</version>
+		    </dependency>
+		  </dependencies>
+        </plugin>
   
    <plugin>
     <artifactId>maven-compiler-plugin</artifactId>

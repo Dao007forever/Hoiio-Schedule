@@ -22,4 +22,6 @@ public class ApiUrls {
     public static String SUBSCRIBED_NUMBERS = DOMAIN + "open/number/get_active";
     public static String CONFIGURE_FORWARD  = DOMAIN
                                                     + "open/number/update_forwarding";
+
+    public static String SEND_SMS = DOMAIN + "open/sms/send";
 }
