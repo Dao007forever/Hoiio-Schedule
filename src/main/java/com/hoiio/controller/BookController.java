@@ -3,6 +3,10 @@ package com.hoiio.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +59,20 @@ public class BookController {
      @RequestMapping(value="/get", method=RequestMethod.GET)
      @ResponseBody
      public String get() {
-         LoggerFactory.getLogger(BookController.class).debug("Testing");
+         FileAppender fa = new FileAppender();
+         fa.setName("FileLogger");
+         fa.setFile("/home/daole/logs/mylog.log");
+         fa.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
+         fa.setThreshold(Level.DEBUG);
+         fa.setAppend(true);
+         fa.activateOptions();
+
+         //add appender to any Logger (here is root)
+         Logger.getRootLogger().addAppender(fa);
+
+         LoggerFactory.getLogger("FileLogger").debug("Test");
+
+         LoggerFactory.getLogger("com.hoiio").debug("Testing");
          return get.get();
      }
 

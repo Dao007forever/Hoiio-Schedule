@@ -130,10 +130,9 @@
     <appender-ref ref="cron" />
   </category>
 
-  <category name="com.hoiio">
-    <level value="debug" />
+  <logger name="com.hoiio">
     <appender-ref ref="debug" />
-  </category>
+  </logger>
 
   <root>
     <appender-ref ref="error" />
