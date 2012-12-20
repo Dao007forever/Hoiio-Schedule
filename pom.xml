@@ -59,25 +59,25 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version${spring.version}/version>
+            <version>${spring.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version${spring.version}/version>
+            <version>${spring.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-oxm</artifactId>
-            <version${spring.version}/version>
+            <version>${spring.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version${spring.version}/version>
+            <version>${spring.version}</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -131,7 +131,7 @@
         <!-- Other stuffs -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
-            <artifactId>servlet-api</artifactId>
+            <artifactId>tomcat-servlet-api</artifactId>
             <version>${tomcat.servlet.version}</version>
         </dependency>
         <dependency>
